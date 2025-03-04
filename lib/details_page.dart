@@ -67,7 +67,7 @@ class DetailsPage extends StatelessWidget {
                 SizedBox(height: 10),
                 _buildRichText('Gender', person.gender),
                 SizedBox(height: 10),
-                _buildRichText('Email', person.email),
+                _buildRichText('Email', person.email, isUri: true),
                 SizedBox(height: 10),
                 _buildRichText('Phone', person.phone),
                 SizedBox(height: 10),
