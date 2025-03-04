@@ -17,9 +17,9 @@ class FetchPersonsSuccessAction {
 }
 
 class FetchPersonsFailureAction {
-  FetchPersonsFailureAction() {
-    print("Something went wrong. Could not fetch persons.");
-  }
+  // FetchPersonsFailureAction() {
+  //   print("Something went wrong. Could not fetch persons.");
+  // }
 }
 
 class RefreshPersonsAction {}

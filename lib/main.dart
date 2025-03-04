@@ -136,22 +136,30 @@ class _PDAXSampleAppState extends State<PDAXSampleApp> {
                               children: [
                                 SizedBox(height: 10.0),
                                 // If using a web browser, show a button to load more persons.
-                                kIsWeb && !state.isLoading && state.hasMoreData
+                                kIsWeb &&
+                                        state.hasMoreData &&
+                                        state.persons.isNotEmpty
                                     ? ElevatedButton(
-                                      onPressed: store.dispatch(
-                                        FetchPersonsAction,
-                                      ),
+                                      onPressed: () {
+                                        store.dispatch(FetchPersonsAction());
+                                      },
                                       child: Text("Load More"),
                                     )
                                     : SizedBox.shrink(),
 
-                                state.isLoading && state.hasMoreData
+                                // Somehow bugged and isLoading is always true.
+                                // TODO: Fix isLoading bug
+                                !kIsWeb && state.isLoading && state.hasMoreData
                                     ? CircularProgressIndicator()
                                     : SizedBox.shrink(),
 
-                                state.hasMoreData
-                                    ? SizedBox.shrink()
-                                    : Text("No more persons available."),
+                                !state.hasMoreData
+                                    ? Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("No more persons available."),
+                                    )
+                                    : SizedBox.shrink(),
+
                                 SizedBox(height: 10.0),
                               ],
                             ),
